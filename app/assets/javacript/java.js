@@ -1,6 +1,7 @@
 $(document).ready(function() {
     // import { Test } from "./draw";
     // console.log(Test);
+    var $myCanvas = $('#theMan');
     const theList = [{ word: "the", tip: "You use this word everyday starts with t" },
         { word: "jumbo", tip: "Some shrimps are called this" },
         { word: "javascript", tip: "Used to make a web page dyanmic" },
@@ -22,6 +23,16 @@ $(document).ready(function() {
     let gameOver = false;
     let gameStart = false;
     let userGuess = [];
+    $myCanvas.drawRect({
+        fillStyle: 'teal',
+        strokeStyle: 'gold',
+        strokeWidth: 1,
+        x: 50,
+        y: 0,
+        fromCenter: false,
+        width: 500,
+        height: 100
+    });
     const sound = document.createElement('audio');
     // hardness buttons
     var easyBtn = $("<button>");
