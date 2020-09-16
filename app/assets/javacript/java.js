@@ -23,6 +23,7 @@ $(document).ready(function() {
     let gameOver = false;
     let gameStart = false;
     let userGuess = [];
+    //frame set up
     $myCanvas.drawRect({
         fillStyle: 'teal',
         strokeStyle: 'gold',
@@ -36,15 +37,13 @@ $(document).ready(function() {
     $myCanvas.drawLine({
         strokeStyle: 'black',
         strokeWidth: 3,
-
         x1: 200,
         y1: 490,
         x2: 200,
         y2: 10,
         x3: 300,
         y3: 10,
-        x4: 300,
-        y4: 30,
+
     });
     $myCanvas.drawLine({
         strokeStyle: 'black',
@@ -52,10 +51,32 @@ $(document).ready(function() {
         rounded: true,
         closed: true,
         x1: 300,
-        y1: 5,
+        y1: 10,
         x2: 300,
         y2: 30,
     });
+    // full face
+    $myCanvas.drawArc({
+        strokeStyle: "black",
+        strokeWidth: 1,
+        x: 300,
+        y: 38,
+        radius: 10,
+    }).drawArc({
+        // draw the left eye
+        fillStyle: '#333',
+        strokeStyle: '#333',
+        x: 295,
+        y: 37,
+        radius: 1.5
+    }).drawArc({
+        // draw the right eye
+        fillStyle: '#333',
+        strokeStyle: '#333',
+        x: 305,
+        y: 37,
+        radius: 1.5
+    })
     const sound = document.createElement('audio');
     // hardness buttons
     var easyBtn = $("<button>");
