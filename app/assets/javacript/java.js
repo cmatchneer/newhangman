@@ -36,12 +36,15 @@ $(document).ready(function() {
     $myCanvas.drawLine({
         strokeStyle: 'black',
         strokeWidth: 3,
-        rounded: true,
-        closed: true,
-        x1: 50,
-        y1: 5,
-        x2: 300,
-        y2: 5,
+
+        x1: 200,
+        y1: 490,
+        x2: 200,
+        y2: 10,
+        x3: 300,
+        y3: 10,
+        x4: 300,
+        y4: 30,
     });
     $myCanvas.drawLine({
         strokeStyle: 'black',
