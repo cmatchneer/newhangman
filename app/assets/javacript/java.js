@@ -33,6 +33,26 @@ $(document).ready(function() {
         width: 500,
         height: 100
     });
+    $myCanvas.drawLine({
+        strokeStyle: 'black',
+        strokeWidth: 3,
+        rounded: true,
+        closed: true,
+        x1: 50,
+        y1: 5,
+        x2: 300,
+        y2: 5,
+    });
+    $myCanvas.drawLine({
+        strokeStyle: 'black',
+        strokeWidth: 2,
+        rounded: true,
+        closed: true,
+        x1: 300,
+        y1: 5,
+        x2: 300,
+        y2: 30,
+    });
     const sound = document.createElement('audio');
     // hardness buttons
     var easyBtn = $("<button>");
