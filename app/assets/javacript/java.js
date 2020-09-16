@@ -76,6 +76,46 @@ $(document).ready(function() {
         x: 305,
         y: 37,
         radius: 1.5
+    }).drawLine({
+        //body
+        strokeStyle: 'black',
+        strokeWidth: 1,
+        x1: 300,
+        y1: 49,
+        x2: 300,
+        y2: 75,
+    }).drawLine({
+        //right arm
+        strokeStyle: "black",
+        strokeWidth: 1,
+        x1: 300,
+        y1: 53,
+        x2: 285,
+        y2: 63,
+    }).drawLine({
+        //left arm
+        strokeStyle: "black",
+        strokeWidth: 1,
+        x1: 300,
+        y1: 53,
+        x2: 315,
+        y2: 63,
+    }).drawLine({
+        //left leg
+        strokeStyle: "black",
+        strokeWidth: 1,
+        x1: 300,
+        y1: 75,
+        x2: 310,
+        y2: 85,
+    }).drawLine({
+        //left leg
+        strokeStyle: "black",
+        strokeWidth: 1,
+        x1: 300,
+        y1: 75,
+        x2: 290,
+        y2: 85,
     })
     const sound = document.createElement('audio');
     // hardness buttons
