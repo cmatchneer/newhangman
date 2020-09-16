@@ -53,7 +53,7 @@ $(document).ready(function() {
         x1: 300,
         y1: 10,
         x2: 300,
-        y2: 30,
+        y2: 28.5,
     });
     // full face
     $myCanvas.drawArc({
@@ -109,7 +109,7 @@ $(document).ready(function() {
         x2: 310,
         y2: 85,
     }).drawLine({
-        //left leg
+        //right leg
         strokeStyle: "black",
         strokeWidth: 1,
         x1: 300,
