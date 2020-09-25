@@ -299,6 +299,7 @@ $(document).ready(function() {
                     height: 50
                 });
                 $theWords.drawText({
+
                     text: 'Well You Killed Me',
                     fontFamily: 'Architects Daughter, "cursive" ',
                     fontSize: 12,
@@ -329,6 +330,7 @@ $(document).ready(function() {
         }
     }
     const reset = () => {
+            $theWords.removeLayer('text').drawLayers();
             index = Math.floor(Math.random() * theList.length);
             gameOver = false;
             numberOfGuesses = resetGuesses;
