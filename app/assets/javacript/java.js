@@ -206,9 +206,9 @@ $(document).ready(function() {
                     return;
                 }
             }
-            if (numberOfGuesses > 5 && numberOfGuesses < 10) {
+            if (numberOfGuesses === 10) {
                 $theWords.drawText({
-                    layer: "middleWord",
+                    layer: "text",
                     text: 'Canvas is fun',
                     fontFamily: 'Architects Daughter, "cursive" ',
                     fontSize: 20,
@@ -219,9 +219,10 @@ $(document).ready(function() {
                     strokeWidth: 1
                 });
             }
-            if (numberOfGuesses < 5) {
-                $theWords.removeLayer('middleWord').drawLayers();
+            if (numberOfGuesses === 5) {
+                $theWords.removeLayer('text').drawLayers();
                 $theWords.drawRect({
+                    layer: "text",
                     fillStyle: 'teal',
                     strokeStyle: 'gold',
                     strokeWidth: 1,
@@ -233,6 +234,30 @@ $(document).ready(function() {
                 });
                 $theWords.drawText({
                     text: 'Ummm Please Get It Right',
+                    fontFamily: 'Architects Daughter, "cursive" ',
+                    fontSize: 12,
+                    x: 100,
+                    y: 25,
+                    fillStyle: 'black',
+                    strokeStyle: 'black',
+                    strokeWidth: 1
+                });
+            }
+            if (numberOfGuesses === 0) {
+                $theWords.removeLayer('text').drawLayers();
+                $theWords.drawRect({
+                    layer: "text",
+                    fillStyle: 'teal',
+                    strokeStyle: 'gold',
+                    strokeWidth: 1,
+                    x: 0,
+                    y: 0,
+                    fromCenter: false,
+                    width: 200,
+                    height: 50
+                });
+                $theWords.drawText({
+                    text: 'Well You Killed Me',
                     fontFamily: 'Architects Daughter, "cursive" ',
                     fontSize: 12,
                     x: 100,
