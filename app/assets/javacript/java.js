@@ -198,6 +198,7 @@ $(document).ready(function() {
         })
         //the game
     const theGame = (guess) => {
+        console.log(userGuess);
         if (gameStart) {
             //if user double guesses the same letter
             for (let k = 0; k < userGuess.length; k++) {
@@ -243,30 +244,7 @@ $(document).ready(function() {
                     strokeWidth: 1
                 });
             }
-            if (numberOfGuesses === 0) {
-                $theWords.removeLayer('text').drawLayers();
-                $theWords.drawRect({
-                    layer: "text",
-                    fillStyle: 'teal',
-                    strokeStyle: 'gold',
-                    strokeWidth: 1,
-                    x: 0,
-                    y: 0,
-                    fromCenter: false,
-                    width: 200,
-                    height: 50
-                });
-                $theWords.drawText({
-                    text: 'Well You Killed Me',
-                    fontFamily: 'Architects Daughter, "cursive" ',
-                    fontSize: 12,
-                    x: 100,
-                    y: 25,
-                    fillStyle: 'black',
-                    strokeStyle: 'black',
-                    strokeWidth: 1
-                });
-            }
+
             userGuess.push(guess.toLowerCase());
             //all the stuff that should happen hit or miss
             numberOfGuesses -= 1;
@@ -307,6 +285,30 @@ $(document).ready(function() {
             }
             //losing the game
             if (numberOfGuesses === 0 && theLetters.join("") !== computerGuess) {
+
+                $theWords.removeLayer('text').drawLayers();
+                $theWords.drawRect({
+                    layer: "text",
+                    fillStyle: 'teal',
+                    strokeStyle: 'gold',
+                    strokeWidth: 1,
+                    x: 0,
+                    y: 0,
+                    fromCenter: false,
+                    width: 200,
+                    height: 50
+                });
+                $theWords.drawText({
+                    text: 'Well You Killed Me',
+                    fontFamily: 'Architects Daughter, "cursive" ',
+                    fontSize: 12,
+                    x: 100,
+                    y: 25,
+                    fillStyle: 'black',
+                    strokeStyle: 'black',
+                    strokeWidth: 1
+                });
+
                 gameOver = true;
                 losses += 1;
                 $("#lossTotal").text("Your Total Losses: " + losses);
@@ -333,6 +335,7 @@ $(document).ready(function() {
             computerGuess = theList[index].word;
             theTip = theList[index].tip;
             theLetters = [];
+            userGuess = [];
             $("#theTip").empty();
             $("#endGame").empty();
             $("#theWord").empty();
