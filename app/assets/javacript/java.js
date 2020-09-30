@@ -1,122 +1,130 @@
 $(document).ready(function() {
-    // import { Test } from "./draw";
-    // console.log(Test);
+    // var Test = require("./draw");
+    // var test = new Test()
+    // test.easy();
+
     var $myCanvas = $('#theMan');
-    const theList = [{ word: "the", tip: "You use this word everyday starts with t" },
-        { word: "jumbo", tip: "Some shrimps are called this" },
-        { word: "javascript", tip: "Used to make a web page dyanmic" },
-        { word: "html", tip: "Basics of makeing a website" },
-        { word: "css", tip: "Makes webpages look goooooooood" },
-        { word: "gravity", tip: "What keeps us from being able to fly" },
-        { word: "codeing", tip: "Another name for programming" },
-        { word: "bugs", tip: "The one thing coders and all homeowners hate to see" },
-        { word: "debugging", tip: "What coders spend 90% of their lives doing" }
-    ];
-    let index = Math.floor(Math.random() * theList.length);
+    var $theWords = $('#theWords');
+    let theList;
+    let index;
     let numberOfGuesses;
     let resetGuesses;
-    let computerGuess = theList[index].word;
-    let theTip = theList[index].tip;
+    let computerGuess;
+    let theTip;
     let theLetters = [];
     let wins = 0;
     let losses = 0;
     let gameOver = false;
     let gameStart = false;
     let userGuess = [];
+    let toughness;
     //frame set up
-    $myCanvas.drawRect({
-        fillStyle: 'teal',
-        strokeStyle: 'gold',
-        strokeWidth: 1,
-        x: 50,
-        y: 0,
-        fromCenter: false,
-        width: 500,
-        height: 100
-    });
-    $myCanvas.drawLine({
-        strokeStyle: 'black',
-        strokeWidth: 3,
-        x1: 200,
-        y1: 490,
-        x2: 200,
-        y2: 10,
-        x3: 300,
-        y3: 10,
+    // $theWords.drawRect({
+    //     fillStyle: 'teal',
+    //     strokeStyle: 'gold',
+    //     strokeWidth: 1,
+    //     x: 0,
+    //     y: 0,
+    //     fromCenter: false,
+    //     width: 200,
+    //     height: 50
+    // });
 
-    });
-    $myCanvas.drawLine({
-        strokeStyle: 'black',
-        strokeWidth: 2,
-        rounded: true,
-        closed: true,
-        x1: 300,
-        y1: 10,
-        x2: 300,
-        y2: 28.5,
-    });
-    // full face
-    $myCanvas.drawArc({
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x: 300,
-        y: 38,
-        radius: 10,
-    }).drawArc({
-        // draw the left eye
-        fillStyle: '#333',
-        strokeStyle: '#333',
-        x: 295,
-        y: 37,
-        radius: 1.5
-    }).drawArc({
-        // draw the right eye
-        fillStyle: '#333',
-        strokeStyle: '#333',
-        x: 305,
-        y: 37,
-        radius: 1.5
-    }).drawLine({
-        //body
-        strokeStyle: 'black',
-        strokeWidth: 1,
-        x1: 300,
-        y1: 49,
-        x2: 300,
-        y2: 75,
-    }).drawLine({
-        //right arm
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 300,
-        y1: 53,
-        x2: 285,
-        y2: 63,
-    }).drawLine({
-        //left arm
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 300,
-        y1: 53,
-        x2: 315,
-        y2: 63,
-    }).drawLine({
-        //left leg
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 300,
-        y1: 75,
-        x2: 310,
-        y2: 85,
-    }).drawLine({
-        //right leg
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 300,
-        y1: 75,
-        x2: 290,
-        y2: 85,
-    })
+    // $myCanvas.drawRect({
+    //     fillStyle: 'teal',
+    //     strokeStyle: 'gold',
+    //     strokeWidth: 1,
+    //     x: 200,
+    //     y: 0,
+    //     fromCenter: false,
+    //     width: 300,
+    //     height: 100
+    // });
+    // $myCanvas.drawLine({
+    //     strokeStyle: 'black',
+    //     strokeWidth: 3,
+    //     x1: 200,
+    //     y1: 490,
+    //     x2: 200,
+    //     y2: 10,
+    //     x3: 270,
+    //     y3: 10,
+
+    // });
+    // $myCanvas.drawLine({
+    //     strokeStyle: 'black',
+    //     strokeWidth: 2,
+    //     rounded: true,
+    //     closed: true,
+    //     x1: 270,
+    //     y1: 10,
+    //     x2: 270,
+    //     y2: 28.5,
+    // });
+    // // full face
+    // $myCanvas.drawArc({
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x: 270,
+    //     y: 38,
+    //     radius: 10,
+    // }).drawArc({
+    //     // draw the left eye
+    //     fillStyle: '#333',
+    //     strokeStyle: '#333',
+    //     x: 265,
+    //     y: 37,
+    //     radius: 1.5
+    // }).drawArc({
+    //     // draw the right eye
+    //     fillStyle: '#333',
+    //     strokeStyle: '#333',
+    //     x: 275,
+    //     y: 37,
+    //     radius: 1.5
+    // }).drawLine({
+    //     //body
+    //     strokeStyle: 'black',
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 49,
+    //     x2: 270,
+    //     y2: 75,
+    // }).drawLine({
+    //     //right arm
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 53,
+    //     x2: 255,
+    //     y2: 63,
+    // }).drawLine({
+    //     //left arm
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 53,
+    //     x2: 285,
+    //     y2: 63,
+    // }).drawLine({
+    //     //left leg
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 75,
+    //     x2: 280,
+    //     y2: 85,
+    // }).drawLine({
+    //     //right leg
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 75,
+    //     x2: 260,
+    //     y2: 85,
+    // })
+
+
     const sound = document.createElement('audio');
     // hardness buttons
     var easyBtn = $("<button>");
@@ -139,22 +147,33 @@ $(document).ready(function() {
         switch (this.id) {
             case "easy":
                 numberOfGuesses = 15;
+                toughness = this.id;
                 break;
             case "medium":
                 numberOfGuesses = 10;
+                toughness = this.id;
                 break;
             case "hard":
                 numberOfGuesses = 5;
+                toughness = this.id;
                 break;
         }
+
         resetGuesses = numberOfGuesses
         $("#theWord").empty();
         $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
         gameStart = true;
-        setUp();
+        $.get("/api/" + toughness, function(response) {
+            theList = response
+            setUp();
+        })
+
     });
 
     const setUp = () => {
+            index = Math.floor(Math.random() * theList.length);
+            computerGuess = theList[index].word;
+            theTip = theList[index].tip;
             // making the array the same length as the guess and blank so it can be filled in later
             for (var j = 0; j < computerGuess.length; j++) {
                 theLetters[j] = " _ ";
@@ -180,6 +199,7 @@ $(document).ready(function() {
         })
         //the game
     const theGame = (guess) => {
+
         if (gameStart) {
             //if user double guesses the same letter
             for (let k = 0; k < userGuess.length; k++) {
@@ -248,12 +268,14 @@ $(document).ready(function() {
         }
     }
     const reset = () => {
+            $theWords.removeLayer('text').drawLayers();
             index = Math.floor(Math.random() * theList.length);
             gameOver = false;
             numberOfGuesses = resetGuesses;
             computerGuess = theList[index].word;
             theTip = theList[index].tip;
             theLetters = [];
+            userGuess = [];
             $("#theTip").empty();
             $("#endGame").empty();
             $("#theWord").empty();

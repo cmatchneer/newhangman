@@ -10,6 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jcanvas/21.0.1/min/jcanvas.min.js" integrity="sha512-pu2L+33GBCuTrTU3mNJphG2Hm2JKlLA01280LIiz29D40f/UFOU5dEVxVuW46p+HZeZhXvQsUxtVFxPabX9S9g==" crossorigin="anonymous"></script>
     <script src="assets/javacript/java.js" type="module"></script>
     <script src="assets/javacript/draw.js" type="module"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/reset.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
@@ -29,7 +30,13 @@
     <div class="hangman">
 
         <div id="theWord"></div>
-        <canvas id="theMan" width="600" height="100">
+        <canvas id="theMan" width="350" height="100">
+            <p>This is fallback content 
+            for users of assistive technologies 
+            or of browsers that don't have 
+            full support for the Canvas API.</p>
+          </canvas>
+        <canvas id="theWords" width="200" height="100">
             <p>This is fallback content 
             for users of assistive technologies 
             or of browsers that don't have 
