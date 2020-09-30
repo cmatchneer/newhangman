@@ -1,23 +1,16 @@
 $(document).ready(function() {
-    // import { Test } from "./draw";
-    // console.log(Test);
+    // var Test = require("./draw");
+    // var test = new Test()
+    // test.easy();
+
     var $myCanvas = $('#theMan');
     var $theWords = $('#theWords');
-    const theList = [{ word: "the", tip: "You use this word everyday starts with t" },
-        { word: "jumbo", tip: "Some shrimps are called this" },
-        { word: "javascript", tip: "Used to make a web page dyanmic" },
-        { word: "html", tip: "Basics of makeing a website" },
-        { word: "css", tip: "Makes webpages look goooooooood" },
-        { word: "gravity", tip: "What keeps us from being able to fly" },
-        { word: "codeing", tip: "Another name for programming" },
-        { word: "bugs", tip: "The one thing coders and all homeowners hate to see" },
-        { word: "debugging", tip: "What coders spend 90% of their lives doing" }
-    ];
-    let index = Math.floor(Math.random() * theList.length);
+    let theList;
+    let index;
     let numberOfGuesses;
     let resetGuesses;
-    let computerGuess = theList[index].word;
-    let theTip = theList[index].tip;
+    let computerGuess;
+    let theTip;
     let theLetters = [];
     let wins = 0;
     let losses = 0;
@@ -26,110 +19,110 @@ $(document).ready(function() {
     let userGuess = [];
     let toughness;
     //frame set up
-    $theWords.drawRect({
-        fillStyle: 'teal',
-        strokeStyle: 'gold',
-        strokeWidth: 1,
-        x: 0,
-        y: 0,
-        fromCenter: false,
-        width: 200,
-        height: 50
-    });
+    // $theWords.drawRect({
+    //     fillStyle: 'teal',
+    //     strokeStyle: 'gold',
+    //     strokeWidth: 1,
+    //     x: 0,
+    //     y: 0,
+    //     fromCenter: false,
+    //     width: 200,
+    //     height: 50
+    // });
 
-    $myCanvas.drawRect({
-        fillStyle: 'teal',
-        strokeStyle: 'gold',
-        strokeWidth: 1,
-        x: 200,
-        y: 0,
-        fromCenter: false,
-        width: 300,
-        height: 100
-    });
-    $myCanvas.drawLine({
-        strokeStyle: 'black',
-        strokeWidth: 3,
-        x1: 200,
-        y1: 490,
-        x2: 200,
-        y2: 10,
-        x3: 270,
-        y3: 10,
+    // $myCanvas.drawRect({
+    //     fillStyle: 'teal',
+    //     strokeStyle: 'gold',
+    //     strokeWidth: 1,
+    //     x: 200,
+    //     y: 0,
+    //     fromCenter: false,
+    //     width: 300,
+    //     height: 100
+    // });
+    // $myCanvas.drawLine({
+    //     strokeStyle: 'black',
+    //     strokeWidth: 3,
+    //     x1: 200,
+    //     y1: 490,
+    //     x2: 200,
+    //     y2: 10,
+    //     x3: 270,
+    //     y3: 10,
 
-    });
-    $myCanvas.drawLine({
-        strokeStyle: 'black',
-        strokeWidth: 2,
-        rounded: true,
-        closed: true,
-        x1: 270,
-        y1: 10,
-        x2: 270,
-        y2: 28.5,
-    });
-    // full face
-    $myCanvas.drawArc({
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x: 270,
-        y: 38,
-        radius: 10,
-    }).drawArc({
-        // draw the left eye
-        fillStyle: '#333',
-        strokeStyle: '#333',
-        x: 265,
-        y: 37,
-        radius: 1.5
-    }).drawArc({
-        // draw the right eye
-        fillStyle: '#333',
-        strokeStyle: '#333',
-        x: 275,
-        y: 37,
-        radius: 1.5
-    }).drawLine({
-        //body
-        strokeStyle: 'black',
-        strokeWidth: 1,
-        x1: 270,
-        y1: 49,
-        x2: 270,
-        y2: 75,
-    }).drawLine({
-        //right arm
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 270,
-        y1: 53,
-        x2: 255,
-        y2: 63,
-    }).drawLine({
-        //left arm
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 270,
-        y1: 53,
-        x2: 285,
-        y2: 63,
-    }).drawLine({
-        //left leg
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 270,
-        y1: 75,
-        x2: 280,
-        y2: 85,
-    }).drawLine({
-        //right leg
-        strokeStyle: "black",
-        strokeWidth: 1,
-        x1: 270,
-        y1: 75,
-        x2: 260,
-        y2: 85,
-    })
+    // });
+    // $myCanvas.drawLine({
+    //     strokeStyle: 'black',
+    //     strokeWidth: 2,
+    //     rounded: true,
+    //     closed: true,
+    //     x1: 270,
+    //     y1: 10,
+    //     x2: 270,
+    //     y2: 28.5,
+    // });
+    // // full face
+    // $myCanvas.drawArc({
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x: 270,
+    //     y: 38,
+    //     radius: 10,
+    // }).drawArc({
+    //     // draw the left eye
+    //     fillStyle: '#333',
+    //     strokeStyle: '#333',
+    //     x: 265,
+    //     y: 37,
+    //     radius: 1.5
+    // }).drawArc({
+    //     // draw the right eye
+    //     fillStyle: '#333',
+    //     strokeStyle: '#333',
+    //     x: 275,
+    //     y: 37,
+    //     radius: 1.5
+    // }).drawLine({
+    //     //body
+    //     strokeStyle: 'black',
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 49,
+    //     x2: 270,
+    //     y2: 75,
+    // }).drawLine({
+    //     //right arm
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 53,
+    //     x2: 255,
+    //     y2: 63,
+    // }).drawLine({
+    //     //left arm
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 53,
+    //     x2: 285,
+    //     y2: 63,
+    // }).drawLine({
+    //     //left leg
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 75,
+    //     x2: 280,
+    //     y2: 85,
+    // }).drawLine({
+    //     //right leg
+    //     strokeStyle: "black",
+    //     strokeWidth: 1,
+    //     x1: 270,
+    //     y1: 75,
+    //     x2: 260,
+    //     y2: 85,
+    // })
 
 
     const sound = document.createElement('audio');
@@ -165,14 +158,22 @@ $(document).ready(function() {
                 toughness = this.id;
                 break;
         }
+
         resetGuesses = numberOfGuesses
         $("#theWord").empty();
         $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
         gameStart = true;
-        setUp();
+        $.get("/api/" + toughness, function(response) {
+            theList = response
+            setUp();
+        })
+
     });
 
     const setUp = () => {
+            index = Math.floor(Math.random() * theList.length);
+            computerGuess = theList[index].word;
+            theTip = theList[index].tip;
             // making the array the same length as the guess and blank so it can be filled in later
             for (var j = 0; j < computerGuess.length; j++) {
                 theLetters[j] = " _ ";
@@ -198,7 +199,7 @@ $(document).ready(function() {
         })
         //the game
     const theGame = (guess) => {
-        console.log(userGuess);
+
         if (gameStart) {
             //if user double guesses the same letter
             for (let k = 0; k < userGuess.length; k++) {
@@ -207,44 +208,6 @@ $(document).ready(function() {
                     return;
                 }
             }
-            if (numberOfGuesses === 10) {
-                $theWords.drawText({
-                    layer: "text",
-                    text: 'Canvas is fun',
-                    fontFamily: 'Architects Daughter, "cursive" ',
-                    fontSize: 20,
-                    x: 100,
-                    y: 25,
-                    fillStyle: 'black',
-                    strokeStyle: 'black',
-                    strokeWidth: 1
-                });
-            }
-            if (numberOfGuesses === 5) {
-                $theWords.removeLayer('text').drawLayers();
-                $theWords.drawRect({
-                    layer: "text",
-                    fillStyle: 'teal',
-                    strokeStyle: 'gold',
-                    strokeWidth: 1,
-                    x: 0,
-                    y: 0,
-                    fromCenter: false,
-                    width: 200,
-                    height: 50
-                });
-                $theWords.drawText({
-                    text: 'Ummm Please Get It Right',
-                    fontFamily: 'Architects Daughter, "cursive" ',
-                    fontSize: 12,
-                    x: 100,
-                    y: 25,
-                    fillStyle: 'black',
-                    strokeStyle: 'black',
-                    strokeWidth: 1
-                });
-            }
-
             userGuess.push(guess.toLowerCase());
             //all the stuff that should happen hit or miss
             numberOfGuesses -= 1;
@@ -285,31 +248,6 @@ $(document).ready(function() {
             }
             //losing the game
             if (numberOfGuesses === 0 && theLetters.join("") !== computerGuess) {
-
-                $theWords.removeLayer('text').drawLayers();
-                $theWords.drawRect({
-                    layer: "text",
-                    fillStyle: 'teal',
-                    strokeStyle: 'gold',
-                    strokeWidth: 1,
-                    x: 0,
-                    y: 0,
-                    fromCenter: false,
-                    width: 200,
-                    height: 50
-                });
-                $theWords.drawText({
-
-                    text: 'Well You Killed Me',
-                    fontFamily: 'Architects Daughter, "cursive" ',
-                    fontSize: 12,
-                    x: 100,
-                    y: 25,
-                    fillStyle: 'black',
-                    strokeStyle: 'black',
-                    strokeWidth: 1
-                });
-
                 gameOver = true;
                 losses += 1;
                 $("#lossTotal").text("Your Total Losses: " + losses);
