@@ -60,7 +60,5 @@ function setup() {
     });
 }
 
-function easy(num) {
-    console.log(num);
-}
-export { easy, setup }
+
+export { setup }

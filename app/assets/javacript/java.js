@@ -1,8 +1,6 @@
 import * as draw from "./draw.js";
+import * as easy from "./easy.js";
 $(document).ready(function() {
-    // var $myCanvas = $('#theMan');
-    // var $theWords = $('#theWords');
-
     let theList;
     let index;
     let numberOfGuesses;
@@ -16,49 +14,6 @@ $(document).ready(function() {
     let gameStart = false;
     let userGuess = [];
     let toughness;
-    //frame set up
-    // $theWords.drawRect({
-    //     fillStyle: 'teal',
-    //     strokeStyle: 'gold',
-    //     strokeWidth: 1,
-    //     x: 0,
-    //     y: 0,
-    //     fromCenter: false,
-    //     width: 200,
-    //     height: 50
-    // });
-
-    // $myCanvas.drawRect({
-    //     fillStyle: 'teal',
-    //     strokeStyle: 'gold',
-    //     strokeWidth: 1,
-    //     x: 200,
-    //     y: 0,
-    //     fromCenter: false,
-    //     width: 300,
-    //     height: 100
-    // });
-    // $myCanvas.drawLine({
-    //     strokeStyle: 'black',
-    //     strokeWidth: 3,
-    //     x1: 200,
-    //     y1: 490,
-    //     x2: 200,
-    //     y2: 10,
-    //     x3: 270,
-    //     y3: 10,
-
-    // });
-    // $myCanvas.drawLine({
-    //     strokeStyle: 'black',
-    //     strokeWidth: 2,
-    //     rounded: true,
-    //     closed: true,
-    //     x1: 270,
-    //     y1: 10,
-    //     x2: 270,
-    //     y2: 28.5,
-    // });
     // // full face
     // $myCanvas.drawArc({
     //     strokeStyle: "black",
@@ -209,7 +164,7 @@ $(document).ready(function() {
             userGuess.push(guess.toLowerCase());
             //all the stuff that should happen hit or miss
             numberOfGuesses -= 1;
-            draw.easy(numberOfGuesses);
+            easy.easy(numberOfGuesses);
             $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
             $("#playerGuess").append(" " + guess + " ");
             $("#hitOrMiss").text("Uh oh " + guess + " isnt in the word keep going");
