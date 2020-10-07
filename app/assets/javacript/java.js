@@ -1,9 +1,8 @@
-import { easy } from "./draw.js";
+import * as draw from "./draw.js";
 $(document).ready(function() {
-    easy();
+    // var $myCanvas = $('#theMan');
+    // var $theWords = $('#theWords');
 
-    var $myCanvas = $('#theMan');
-    var $theWords = $('#theWords');
     let theList;
     let index;
     let numberOfGuesses;
@@ -157,7 +156,7 @@ $(document).ready(function() {
                 toughness = this.id;
                 break;
         }
-
+        draw.setup()
         resetGuesses = numberOfGuesses
         $("#theWord").empty();
         $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
@@ -210,6 +209,7 @@ $(document).ready(function() {
             userGuess.push(guess.toLowerCase());
             //all the stuff that should happen hit or miss
             numberOfGuesses -= 1;
+            draw.easy(numberOfGuesses);
             $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
             $("#playerGuess").append(" " + guess + " ");
             $("#hitOrMiss").text("Uh oh " + guess + " isnt in the word keep going");
