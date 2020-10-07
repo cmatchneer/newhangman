@@ -1,7 +1,6 @@
+import { easy } from "./draw.js";
 $(document).ready(function() {
-    // var Test = require("./draw");
-    // var test = new Test()
-    // test.easy();
+    easy();
 
     var $myCanvas = $('#theMan');
     var $theWords = $('#theWords');

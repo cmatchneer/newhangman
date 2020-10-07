@@ -1,7 +1,4 @@
-//  var Test = function() {
-
-//      this.easy = function() {
-//          console.log("testing this");
-//      }
-//  }
-//  module.exports = Test;
+function easy() {
+    console.log("test");
+}
+export { easy }
