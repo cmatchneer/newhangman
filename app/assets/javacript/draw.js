@@ -3,6 +3,8 @@ var $theWords = $('#theWords');
 
 function setup() {
     //frame set up
+    $("#theMan").clearCanvas()
+    $("#theWords").clearCanvas()
 
     $theWords.drawRect({
         fillStyle: 'teal',

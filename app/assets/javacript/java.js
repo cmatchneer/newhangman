@@ -140,7 +140,15 @@ $(document).ready(function() {
             $("#lossTotal").text("Your Total Losses: " + losses);
             $("#endGame").html("Looks like we have quitter over here" + "<br>" + "The word was " + computerGuess + "<br>" +
                 "Hit another letter to try again dont quit this time");
-            reset();
+            var quit = $("<button>");
+            quit.addClass("quitButton btn btn-danger");
+            quit.text("You Quitter");
+            $("#buttons").append(quit);
+            $(".quitButton").on("click", function() {
+                $(this).remove();
+                reset();
+            });
+
         })
         //tip button
     $("#helpDesk").on("click", function() {
@@ -202,6 +210,28 @@ $(document).ready(function() {
             }
             //losing the game
             if (numberOfGuesses === 0 && theLetters.join("") !== computerGuess) {
+                // $theWords.drawRect({
+                //     fillStyle: 'teal',
+                //     strokeStyle: 'gold',
+                //     strokeWidth: 1,
+                //     x: 0,
+                //     y: 0,
+                //     fromCenter: false,
+                //     width: 200,
+                //     height: 50
+                // });
+                // $theWords.drawText({
+                //     layer: true,
+                //     name: "text",
+                //     text: "Please only be one guess away",
+                //     fontfamily: "cursive",
+                //     fontSize: 15,
+                //     x: 100,
+                //     y: 25,
+                //     strokeStyle: "black",
+                //     strokeWidth: 1,
+                //     fillStyle: "black"
+                // })
                 gameOver = true;
                 losses += 1;
                 $("#lossTotal").text("Your Total Losses: " + losses);
@@ -222,8 +252,10 @@ $(document).ready(function() {
         }
     }
     const reset = () => {
-            $theWords.removeLayer('text').drawLayers();
+            // $theWords.removeLayer('text').drawLayers();
+            draw.setup()
             index = Math.floor(Math.random() * theList.length);
+            console.log(index);
             gameOver = false;
             numberOfGuesses = resetGuesses;
             computerGuess = theList[index].word;
