@@ -13,6 +13,10 @@ app.use(express.static(__dirname + "/app/assets/javacript"));
 app.use(express.static(__dirname + "/app/assets/audio"));
 require("./routes/html-routes.js")(app);
 require("./routes/easy.js")(app);
+require("./routes/medium.js")(app);
+require("./routes/hard.js")(app);
+
+
 
 
 app.listen(PORT, function() {

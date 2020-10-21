@@ -3,7 +3,7 @@ body {
 }
 
 div {
-    height: 50px;
+    height: 30px;
     width: 80%;
     text-align: center;
     margin: 10px auto;
@@ -20,7 +20,7 @@ div {
 }
 
 .hangman {
-    height: 600px;
+    height: 580px;
     background-color: darkred;
 }
 
@@ -36,4 +36,12 @@ div {
 
 #endGame {
     height: 90px;
+}
+
+#theWord {
+    height: 50px;
+}
+
+#buttons {
+    height: 50px;
 }
