@@ -144,16 +144,6 @@ function easy(num) {
     }
     if (num === 3) {
         //left leg
-        $theWords.drawRect({
-            fillStyle: 'teal',
-            strokeStyle: 'gold',
-            strokeWidth: 1,
-            x: 0,
-            y: 0,
-            fromCenter: false,
-            width: 200,
-            height: 50
-        });
         $myCanvas.drawLine({
 
             strokeStyle: "black",

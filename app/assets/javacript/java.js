@@ -1,5 +1,7 @@
 import * as draw from "./draw.js";
-import * as easy from "./easy.js";
+// import * as easy from "./easy.js";
+// import * as mid from "./mid.js";
+import * as diffculty from "./diffculty.js"
 $(document).ready(function() {
     let theList;
     let index;
@@ -172,7 +174,8 @@ $(document).ready(function() {
             userGuess.push(guess.toLowerCase());
             //all the stuff that should happen hit or miss
             numberOfGuesses -= 1;
-            easy.easy(numberOfGuesses);
+            // easy.easy(numberOfGuesses);
+            diffculty.diffculty(toughness, numberOfGuesses);
             $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
             $("#playerGuess").append(" " + guess + " ");
             $("#hitOrMiss").text("Uh oh " + guess + " isnt in the word keep going");
@@ -210,28 +213,6 @@ $(document).ready(function() {
             }
             //losing the game
             if (numberOfGuesses === 0 && theLetters.join("") !== computerGuess) {
-                // $theWords.drawRect({
-                //     fillStyle: 'teal',
-                //     strokeStyle: 'gold',
-                //     strokeWidth: 1,
-                //     x: 0,
-                //     y: 0,
-                //     fromCenter: false,
-                //     width: 200,
-                //     height: 50
-                // });
-                // $theWords.drawText({
-                //     layer: true,
-                //     name: "text",
-                //     text: "Please only be one guess away",
-                //     fontfamily: "cursive",
-                //     fontSize: 15,
-                //     x: 100,
-                //     y: 25,
-                //     strokeStyle: "black",
-                //     strokeWidth: 1,
-                //     fillStyle: "black"
-                // })
                 gameOver = true;
                 losses += 1;
                 $("#lossTotal").text("Your Total Losses: " + losses);
