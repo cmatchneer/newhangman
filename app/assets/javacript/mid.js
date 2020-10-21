@@ -4,7 +4,7 @@ var $theWords = $('#theWords');
 function mid(num) {
     if (num === 9) {
         //head
-        console.log(num);
+
         $myCanvas.drawArc({
             strokeStyle: "black",
             strokeWidth: 1,
