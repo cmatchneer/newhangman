@@ -1,10 +1,8 @@
+import * as draw from "./draw.js";
+// import * as easy from "./easy.js";
+// import * as mid from "./mid.js";
+import * as diffculty from "./diffculty.js"
 $(document).ready(function() {
-    // var Test = require("./draw");
-    // var test = new Test()
-    // test.easy();
-
-    var $myCanvas = $('#theMan');
-    var $theWords = $('#theWords');
     let theList;
     let index;
     let numberOfGuesses;
@@ -18,113 +16,6 @@ $(document).ready(function() {
     let gameStart = false;
     let userGuess = [];
     let toughness;
-    //frame set up
-    // $theWords.drawRect({
-    //     fillStyle: 'teal',
-    //     strokeStyle: 'gold',
-    //     strokeWidth: 1,
-    //     x: 0,
-    //     y: 0,
-    //     fromCenter: false,
-    //     width: 200,
-    //     height: 50
-    // });
-
-    // $myCanvas.drawRect({
-    //     fillStyle: 'teal',
-    //     strokeStyle: 'gold',
-    //     strokeWidth: 1,
-    //     x: 200,
-    //     y: 0,
-    //     fromCenter: false,
-    //     width: 300,
-    //     height: 100
-    // });
-    // $myCanvas.drawLine({
-    //     strokeStyle: 'black',
-    //     strokeWidth: 3,
-    //     x1: 200,
-    //     y1: 490,
-    //     x2: 200,
-    //     y2: 10,
-    //     x3: 270,
-    //     y3: 10,
-
-    // });
-    // $myCanvas.drawLine({
-    //     strokeStyle: 'black',
-    //     strokeWidth: 2,
-    //     rounded: true,
-    //     closed: true,
-    //     x1: 270,
-    //     y1: 10,
-    //     x2: 270,
-    //     y2: 28.5,
-    // });
-    // // full face
-    // $myCanvas.drawArc({
-    //     strokeStyle: "black",
-    //     strokeWidth: 1,
-    //     x: 270,
-    //     y: 38,
-    //     radius: 10,
-    // }).drawArc({
-    //     // draw the left eye
-    //     fillStyle: '#333',
-    //     strokeStyle: '#333',
-    //     x: 265,
-    //     y: 37,
-    //     radius: 1.5
-    // }).drawArc({
-    //     // draw the right eye
-    //     fillStyle: '#333',
-    //     strokeStyle: '#333',
-    //     x: 275,
-    //     y: 37,
-    //     radius: 1.5
-    // }).drawLine({
-    //     //body
-    //     strokeStyle: 'black',
-    //     strokeWidth: 1,
-    //     x1: 270,
-    //     y1: 49,
-    //     x2: 270,
-    //     y2: 75,
-    // }).drawLine({
-    //     //right arm
-    //     strokeStyle: "black",
-    //     strokeWidth: 1,
-    //     x1: 270,
-    //     y1: 53,
-    //     x2: 255,
-    //     y2: 63,
-    // }).drawLine({
-    //     //left arm
-    //     strokeStyle: "black",
-    //     strokeWidth: 1,
-    //     x1: 270,
-    //     y1: 53,
-    //     x2: 285,
-    //     y2: 63,
-    // }).drawLine({
-    //     //left leg
-    //     strokeStyle: "black",
-    //     strokeWidth: 1,
-    //     x1: 270,
-    //     y1: 75,
-    //     x2: 280,
-    //     y2: 85,
-    // }).drawLine({
-    //     //right leg
-    //     strokeStyle: "black",
-    //     strokeWidth: 1,
-    //     x1: 270,
-    //     y1: 75,
-    //     x2: 260,
-    //     y2: 85,
-    // })
-
-
     const sound = document.createElement('audio');
     // hardness buttons
     var easyBtn = $("<button>");
@@ -158,7 +49,7 @@ $(document).ready(function() {
                 toughness = this.id;
                 break;
         }
-
+        draw.setup()
         resetGuesses = numberOfGuesses
         $("#theWord").empty();
         $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
@@ -186,8 +77,16 @@ $(document).ready(function() {
             losses += 1
             $("#lossTotal").text("Your Total Losses: " + losses);
             $("#endGame").html("Looks like we have quitter over here" + "<br>" + "The word was " + computerGuess + "<br>" +
-                "Hit another letter to try again dont quit this time");
-            reset();
+                "Hit the try again button to try again");
+            var quit = $("<button>");
+            quit.addClass("quitButton btn btn-danger");
+            quit.text("Try again");
+            $("#buttons").append(quit);
+            $(".quitButton").on("click", function() {
+                $(this).remove();
+                reset();
+            });
+
         })
         //tip button
     $("#helpDesk").on("click", function() {
@@ -211,6 +110,8 @@ $(document).ready(function() {
             userGuess.push(guess.toLowerCase());
             //all the stuff that should happen hit or miss
             numberOfGuesses -= 1;
+            // easy.easy(numberOfGuesses);
+            diffculty.diffculty(toughness, numberOfGuesses);
             $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
             $("#playerGuess").append(" " + guess + " ");
             $("#hitOrMiss").text("Uh oh " + guess + " isnt in the word keep going");
@@ -268,8 +169,10 @@ $(document).ready(function() {
         }
     }
     const reset = () => {
-            $theWords.removeLayer('text').drawLayers();
+            // $theWords.removeLayer('text').drawLayers();
+            draw.setup()
             index = Math.floor(Math.random() * theList.length);
+            console.log(index);
             gameOver = false;
             numberOfGuesses = resetGuesses;
             computerGuess = theList[index].word;
