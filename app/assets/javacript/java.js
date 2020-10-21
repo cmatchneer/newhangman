@@ -139,10 +139,10 @@ $(document).ready(function() {
             losses += 1
             $("#lossTotal").text("Your Total Losses: " + losses);
             $("#endGame").html("Looks like we have quitter over here" + "<br>" + "The word was " + computerGuess + "<br>" +
-                "Hit another letter to try again dont quit this time");
+                "Hit the try again button to try again");
             var quit = $("<button>");
             quit.addClass("quitButton btn btn-danger");
-            quit.text("You Quitter");
+            quit.text("Try again");
             $("#buttons").append(quit);
             $(".quitButton").on("click", function() {
                 $(this).remove();

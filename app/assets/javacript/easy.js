@@ -94,7 +94,7 @@ function easy(num) {
     }
     if (num === 6) {
         //right arm
-        $('#theWords').removeLayer('text').drawLayers();
+
         $myCanvas.drawLine({
 
             strokeStyle: "black",
