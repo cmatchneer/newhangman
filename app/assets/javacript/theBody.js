@@ -99,4 +99,4 @@ function rightLeg() {
     })
 }
 
-export { head, leftEye, rightEye, leftArm, rightArm, leftLeg, rightLeg }
+export { head, leftEye, rightEye, leftArm, rightArm, leftLeg, rightLeg, body }
