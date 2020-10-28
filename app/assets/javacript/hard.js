@@ -1,33 +1,12 @@
-var $myCanvas = $('#theMan');
+import * as body from "./theBody.js"
 var $theWords = $('#theWords');
 
 function hard(num) {
     if (num === 4) {
         $('#theWords').removeLayer('text').drawLayers();
-        $myCanvas.drawArc({
-                strokeStyle: "black",
-                strokeWidth: 1,
-                x: 270,
-                y: 38,
-                radius: 10,
-            })
-            // draw the left eye
-        $myCanvas.drawArc({
-            fillStyle: '#333',
-            strokeStyle: '#333',
-            x: 265,
-            y: 37,
-            radius: 1.5
-        })
-
-        // draw the right eye
-        $myCanvas.drawArc({
-            fillStyle: '#333',
-            strokeStyle: '#333',
-            x: 275,
-            y: 37,
-            radius: 1.5
-        })
+        body.head()
+        body.rightEye()
+        body.leftEye()
         $theWords.drawRect({
             fillStyle: 'teal',
             strokeStyle: 'gold',
@@ -54,15 +33,7 @@ function hard(num) {
     if (num === 3) {
         $('#theWords').removeLayer('text').drawLayers();
         //body
-        $myCanvas.drawLine({
-
-            strokeStyle: 'black',
-            strokeWidth: 1,
-            x1: 270,
-            y1: 49,
-            x2: 270,
-            y2: 75,
-        })
+        body.body()
         $theWords.drawRect({
             fillStyle: 'teal',
             strokeStyle: 'gold',
@@ -89,6 +60,8 @@ function hard(num) {
     if (num === 2) {
         //both arms
         $('#theWords').removeLayer('text').drawLayers();
+        body.rightArm()
+        body.leftArm()
         $theWords.drawRect({
             fillStyle: 'teal',
             strokeStyle: 'gold',
@@ -111,44 +84,12 @@ function hard(num) {
             strokeWidth: 1,
             fillStyle: "black"
         })
-        $myCanvas.drawLine({
-
-            strokeStyle: "black",
-            strokeWidth: 1,
-            x1: 270,
-            y1: 53,
-            x2: 255,
-            y2: 63,
-        })
-        $myCanvas.drawLine({
-
-            strokeStyle: "black",
-            strokeWidth: 1,
-            x1: 270,
-            y1: 53,
-            x2: 285,
-            y2: 63,
-        })
     }
     if (num === 1) {
         $('#theWords').removeLayer('text').drawLayers();
         //both legs
-        $myCanvas.drawLine({
-            strokeStyle: "black",
-            strokeWidth: 1,
-            x1: 270,
-            y1: 75,
-            x2: 280,
-            y2: 85,
-        })
-        $myCanvas.drawLine({
-            strokeStyle: "black",
-            strokeWidth: 1,
-            x1: 270,
-            y1: 75,
-            x2: 260,
-            y2: 85,
-        })
+        body.leftLeg()
+        body.rightLeg()
         $theWords.drawRect({
             fillStyle: 'teal',
             strokeStyle: 'gold',
