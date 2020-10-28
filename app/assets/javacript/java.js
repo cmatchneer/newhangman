@@ -1,6 +1,4 @@
 import * as draw from "./draw.js";
-// import * as easy from "./easy.js";
-// import * as mid from "./mid.js";
 import * as diffculty from "./diffculty.js"
 $(document).ready(function() {
     let theList;
@@ -16,6 +14,7 @@ $(document).ready(function() {
     let gameStart = false;
     let userGuess = [];
     let toughness;
+    let correct = false
     const sound = document.createElement('audio');
     // hardness buttons
     var easyBtn = $("<button>");
@@ -108,16 +107,6 @@ $(document).ready(function() {
                 }
             }
             userGuess.push(guess.toLowerCase());
-            //all the stuff that should happen hit or miss
-            numberOfGuesses -= 1;
-            // easy.easy(numberOfGuesses);
-            diffculty.diffculty(toughness, numberOfGuesses);
-            $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
-            $("#playerGuess").append(" " + guess + " ");
-            $("#hitOrMiss").text("Uh oh " + guess + " isnt in the word keep going");
-            $("#endGame").empty();
-            sound.setAttribute("src", "assets/audio/miss.m4a");
-            sound.play();
             //the loop and if statment for gussing a letter correctly
             for (var i = 0; i < computerGuess.length; i++) {
                 if (guess.toLowerCase() === computerGuess.charAt(i)) {
@@ -126,8 +115,21 @@ $(document).ready(function() {
                     $("#hitOrMiss").text("You guessed a correct letter yayy keep going");
                     sound.setAttribute("src", "assets/audio/hit.m4a");
                     sound.play();
-
+                    correct = true;
                 }
+            }
+            //all the stuff that should happen hit or miss
+            if (correct === false) {
+                numberOfGuesses -= 1;
+                diffculty.diffculty(toughness, numberOfGuesses);
+                $("#guessesLeft").text("Guesses Left: " + numberOfGuesses);
+                $("#playerGuess").append(" " + guess + " ");
+                $("#hitOrMiss").text("Uh oh " + guess + " isnt in the word keep going");
+                $("#endGame").empty();
+                sound.setAttribute("src", "assets/audio/miss.m4a");
+                sound.play();
+            } else {
+                correct = false
             }
             //winning the game
             if (theLetters.join("") === computerGuess) {
