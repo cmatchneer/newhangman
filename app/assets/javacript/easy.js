@@ -1,18 +1,11 @@
 var $myCanvas = $('#theMan');
 var $theWords = $('#theWords');
+import * as body from "./theBody.js"
 
 function easy(num) {
 
     if (num === 14) {
-        //head
-        console.log(num);
-        $myCanvas.drawArc({
-            strokeStyle: "black",
-            strokeWidth: 1,
-            x: 270,
-            y: 38,
-            radius: 10,
-        })
+        body.head()
     }
     if (num === 12) {
         // draw the left eye
